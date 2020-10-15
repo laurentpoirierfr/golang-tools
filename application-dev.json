@@ -1,0 +1,27 @@
+{
+    "application": {
+        "profile": "dev",
+        "port": "9090"
+    },
+    "service": {
+        "storage": {
+            "account": {
+                "name": "datahubrawdatadevfrcst01",
+                "key": "qhdbibE4t8PRCPb0k/lTd5i1eN6MEH4BEIBZyrDb0rVDnu7M9J3HygpY0n7S0KQjz4wlxvYVqiokkcD1Nd37uw==",
+                "url": "https://${service.storage.account.name}.blob.core.windows.net/referential"
+            }
+        }
+    },
+    "management": {
+        "endpoints": {
+            "health": {
+                "route": "/actuator/health",
+                "response": "{\"status\": \"UP\"}"
+            },
+            "info": {
+                "route": "/actuator/info",
+                "response": "{ \"app\" : { \"version\" : \"${application.version}\", \"description\" : \"${application.description}\", \"name\" : \"${application.name}\", \"profil\" : \"${application.profil}\" } }"
+            }
+        }
+    }
+}

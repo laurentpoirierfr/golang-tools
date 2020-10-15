@@ -1,0 +1,7 @@
+{
+    "application": {
+        "name": "datahub-validating-reference-api",
+        "description": "Datahub référentiel api application",
+        "version": "0.0.1"
+    }
+}
