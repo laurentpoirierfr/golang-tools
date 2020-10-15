@@ -9,8 +9,6 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-var bootstrap string
-var application string
 var values map[string]string
 
 func init() {
