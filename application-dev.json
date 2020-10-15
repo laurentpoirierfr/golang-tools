@@ -1,6 +1,6 @@
 {
     "application": {
-        "profile": "dev",
+        "profile": "develop",
         "port": "9090"
     },
     "service": {

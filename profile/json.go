@@ -6,7 +6,6 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/laurentpoirierfr/golang-tools/tools"
 	"github.com/tidwall/gjson"
 )
 
@@ -18,25 +17,8 @@ func init() {
 
 	values = make(map[string]string)
 
-	json, err := ioutil.ReadFile("bootstrap.json")
-	if err != nil {
-		log.Println("bootstrap.json NOT loaded ...")
-	} else {
-		log.Println("bootstrap.json loaded ...")
-		bootstrap = string(json)
-		loadBootstrapValues()
-	}
-
-	profile := os.Getenv("PROFILE")
-	filename := "application.json"
-	if profile != "" {
-		filename = "application-" + profile + ".json"
-	}
-	json, err = ioutil.ReadFile(filename)
-	tools.FailOnError(err, "Failed to read file : "+filename)
-	application = string(json)
+	loadBootstrapValues()
 	loadApplicationValues()
-	log.Println(filename + " loaded ...")
 
 }
 
@@ -77,16 +59,30 @@ func getFieldsName(source string, parent string) []string {
 }
 
 func loadBootstrapValues() {
-	loadValues(bootstrap)
+	loadValues("bootstrap.json")
 }
 
 func loadApplicationValues() {
-	loadValues(application)
+	filename := "application.json"
+	if envProfile := os.Getenv("PROFILE"); len(envProfile) > 0 {
+		filename = "application-" + envProfile + ".json"
+		log.Println("Started with profile :", envProfile)
+	} else {
+		log.Println("Started with profile : default")
+	}
+	loadValues(filename)
 }
 
-func loadValues(json string) {
-	fields := getFieldsName(json, "")
-	for _, field := range fields {
-		values[field] = gjson.Get(json, field).String()
+func loadValues(filename string) {
+	json, err := ioutil.ReadFile(filename)
+	if err != nil {
+		log.Println(filename, "NOT loaded ...")
+	} else {
+		log.Println(filename, "loaded ...")
+		j := string(json)
+		fields := getFieldsName(string(j), "")
+		for _, field := range fields {
+			values[field] = gjson.Get(j, field).String()
+		}
 	}
 }
