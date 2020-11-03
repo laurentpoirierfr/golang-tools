@@ -3,12 +3,12 @@ package main
 import (
 	"log"
 
-	"github.com/laurentpoirierfr/golang-tools/profile"
+	"github.com/laurentpoirierfr/golang-tools/config"
 )
 
 func main() {
 
-	value := profile.GetIntegerValue("application.port")
+	value := config.GetIntegerValue("application.port")
 	log.Println("application.port :", value)
 
 }

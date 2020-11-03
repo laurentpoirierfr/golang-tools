@@ -1,4 +1,4 @@
-package profile
+package config
 
 import (
 	"io/ioutil"
