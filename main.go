@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	value := profile.GetValueString("application.profile")
-	log.Println("application.profile :", value)
+	value := profile.GetIntegerValue("application.port")
+	log.Println("application.port :", value)
 
 }

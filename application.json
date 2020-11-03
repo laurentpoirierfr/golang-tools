@@ -1,7 +1,7 @@
 {
     "application": {
         "profile": "default",
-        "port": "8080"
+        "port": "${PORT:8080}"
     },
     "service": {
         "storage": {
