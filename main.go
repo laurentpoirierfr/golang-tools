@@ -1,14 +1,13 @@
 package main
 
 import (
-	"log"
-
 	"github.com/laurentpoirierfr/golang-tools/config"
+	"github.com/laurentpoirierfr/golang-tools/log"
 )
 
 func main() {
 
-	value := config.GetIntegerValue("application.port")
-	log.Println("application.port :", value)
+	value := config.GetStringValue("application.port")
+	log.Debug("application.port : " + value)
 
 }

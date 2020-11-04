@@ -51,7 +51,7 @@ func GetIntegerValue(key string) int {
 	if val, err := strconv.Atoi(value); err == nil {
 		return val
 	}
-	log.Println(value, "is not an integer.")
+	log.Println(value + " is not an integer.")
 	return 0
 }
 
@@ -83,7 +83,7 @@ func loadApplicationValues() {
 	filename := "application.json"
 	if envProfile := os.Getenv("PROFILE"); len(envProfile) > 0 {
 		filename = "application-" + envProfile + ".json"
-		log.Println("Started with profile :", envProfile)
+		log.Println("Started with profile :" + envProfile)
 	} else {
 		log.Println("Started with profile : default")
 	}
@@ -93,9 +93,9 @@ func loadApplicationValues() {
 func loadValues(filename string) {
 	json, err := ioutil.ReadFile(filename)
 	if err != nil {
-		log.Println(filename, "NOT loaded ...")
+		log.Println(filename + " NOT loaded ...")
 	} else {
-		log.Println(filename, "loaded ...")
+		log.Println(filename + " loaded ...")
 		j := string(json)
 		fields := getFieldsName(string(j), "")
 		for _, field := range fields {

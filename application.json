@@ -23,5 +23,16 @@
                 "response": "{ \"app\" : { \"version\" : \"${application.version}\", \"description\" : \"${application.description}\", \"name\" : \"${application.name}\", \"profil\" : \"${application.profil}\" } }"
             }
         }
+    },
+    "logger": {
+        "enabled": "true",
+        "amqp": {
+            "server": "${AMQP_LOG_SERVER_NAME:127.0.0.1}",
+            "port": "${AMQP_LOG_SERVER_PORT:5672}",
+            "username": "${AMQP_LOG_USERNAME:guest}",
+            "password": "${AMQP_LOG_PASSWORD:guest}",
+            "exchange": "${AMQP_LOG_EXCHANGE:log.service}",
+            "route": "logs"
+        }
     }
 }
